@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  description: The Flight API. The API retrieves flight details based on the the origin and destination a custoer would like to check. They can also add filters to refine their searches
+  version: 0.0.1
+  title: FlightAPI
+  contact:
+    name: 'Akhila Sukumar'
+    email: akhila.23suku@gmail.com
+basePath: /flights
+paths:
+  /{origin}/{destination}:
+    get:
+      tags:
+        - flights
+      summary: retrieve Flight Details
+      description: retrieves the details of the flights with the params to filter on
+      operationId: searchFlights
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: origin
+          type: string
+          required: true
+          description: origin code for the flight
+        - in: path
+          name: destination
+          type: string
+          required: true
+          description: destination code for the flight
+        - in: query
+          name: startDepartureTime
+          type: string
+          required: false
+          description: start of the departure Time in HH:MM
+        - in: query
+          name: endDepartureTime
+          type: string
+          required: false
+          description: end of the departure Time in HH:MM
+        - in: query
+          name: startArrivalTime
+          type: string
+          required: false
+          description: start of the arrival Time in HH:MM
+        - in: query
+          name: endArrivalTime
+          type: string
+          required: false
+          description: end of the arrival Time in HH:MM
+        - in: query
+          name: price
+          type: string
+          required: false
+          description: price of the flight to filter on
+        - in: query
+          name: travelTime
+          type: string
+          required: false
+          description: travel time in HH
+      responses:
+        '200':
+          description: OK
+        400:
+          description: Bad Request
+        500:
+          description: Internal Server Error
